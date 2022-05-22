@@ -14,6 +14,7 @@ namespace LabOne
         public static string readFile = "";
         public static string[] words;
         public static string[] lines;
+        
 
 
         public static void readFromFile(string address)
@@ -30,6 +31,55 @@ namespace LabOne
 
             Console.Clear();
             Console.WriteLine("Number of Words: " + Convert.ToString(wordsCount));
+        }
+
+        public static IList<string> bubbleSort(string [] words)
+        {
+             IList<string> wordsList = new List<string>();
+        Console.Clear();
+            if (lines != null)
+            {
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    words = lines[i].Split(" ");
+                    for (int j = 0; j < words.Length; j++)
+                    {
+                        wordsList.Add(words[j]);
+                    }
+
+
+                }
+                DateTime startTime = DateTime.Now;
+                int startTimeMs = startTime.Millisecond;
+
+                string temp = "";
+                for (int i = 0; i < wordsList.Count - 1; i++)
+                {
+                    for (int j = i + 1; j < wordsList.Count; j++)
+                    {
+                        if (wordsList[j].CompareTo(wordsList[i]) > 0)
+                        {
+                            temp = wordsList[j];
+                            wordsList[j] = wordsList[i];
+                            wordsList[i] = temp;
+                        }
+                    }
+                }
+                DateTime endTime = DateTime.Now;
+                int endTimeMs = endTime.Millisecond;
+
+               /* foreach (string word in wordsList)
+                {
+                    Console.WriteLine(word);
+                }*/
+                Console.WriteLine("Execution Time: " + Convert.ToString(Math.Abs(endTimeMs - startTimeMs)) + " ms");
+            }
+            else
+            {
+                Console.WriteLine("There is not any words");
+            }
+            return wordsList;
         }
 
         static void Main(string[] args)
@@ -69,20 +119,7 @@ namespace LabOne
                         try
                         {
                             readFromFile(address);
-                            /* int wordsCount = 0;
-                             readFile = File.ReadAllText(address);
-                             lines = readFile.Split("\n");
-                             *//*Console.WriteLine(readFile);*//*
-                             //lines = readFile.Split("\n");
-                             for (int i = 0; i < lines.Length; i++)
-                             {
-                                 words = lines[i].Split(" ");
-                                 wordsCount = wordsCount + words.Length;
-                             }
-
-                             Console.Clear();
-                             Console.WriteLine("Number of Words: " + Convert.ToString(wordsCount));*/
-                        }
+                                                   }
                         catch
                         {
                             Console.Clear();
@@ -94,8 +131,9 @@ namespace LabOne
                     else if (option == "2")
                     {
 
+                       bubbleSort(words);
 
-                        List<string> wordsList = new List<string>();
+                        /*List<string> wordsList = new List<string>();
                         Console.Clear();
                         if (lines != null)
                         {
@@ -139,7 +177,7 @@ namespace LabOne
                         {
                             Console.WriteLine("There is not any words");
                         }
-
+*/
 
                     }
                     else if (option == "3")
